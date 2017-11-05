@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios"
+import {GetRepo} from "./GetRepo";
 
 export class Login extends Component {
     constructor(props) {
@@ -11,11 +12,11 @@ export class Login extends Component {
     render() {
         return (
             <div>
-                <input type="text" id="username"/>
-                <input type="text" id="password"/>
+                <input type="text" id="username" placeholder="username"/>
+                <input type="text" id="password" placeholder="password"/>
                 <input type="button" id="submit" onClick={this.handleButtonClick}/>
                 {this.state.error}
-                {this.state.logged ? <FindRepo/> : null}
+                {this.state.logged ? <GetRepo/> : null}
             </div>
         )
     }
@@ -24,7 +25,7 @@ export class Login extends Component {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
         try {
-            const login_response = await axios.post("/api/login/", {
+            await axios.post("/api/login/", {
                 username: username,
                 password: password
             });
