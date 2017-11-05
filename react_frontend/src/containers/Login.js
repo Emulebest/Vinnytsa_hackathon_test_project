@@ -4,7 +4,7 @@ import axios from "axios"
 export class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {error: ""};
+        this.state = {error: "", logged: false};
         this.handleButtonClick = this.handleButtonClick.bind(this)
     }
 
@@ -15,6 +15,7 @@ export class Login extends Component {
                 <input type="text" id="password"/>
                 <input type="button" id="submit" onClick={this.handleButtonClick}/>
                 {this.state.error}
+                {this.state.logged ? <FindRepo/> : null}
             </div>
         )
     }
@@ -27,7 +28,7 @@ export class Login extends Component {
                 username: username,
                 password: password
             });
-            this.setState({error: ""});
+            this.setState({error: "", logged: true});
             localStorage.setItem("git_login", username);
             localStorage.setItem("git_pass", password)
         } catch(e) {
