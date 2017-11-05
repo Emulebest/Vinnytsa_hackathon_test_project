@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from "axios"
 
 export class Login extends Component {
     constructor(props) {
         super(props);
+        this.state = {error: ""};
         this.handleButtonClick = this.handleButtonClick.bind(this)
     }
 
@@ -13,18 +14,24 @@ export class Login extends Component {
                 <input type="text" id="username"/>
                 <input type="text" id="password"/>
                 <input type="button" id="submit" onClick={this.handleButtonClick}/>
+                {this.state.error}
             </div>
         )
     }
 
-    handleButtonClick() {
+    async handleButtonClick() {
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        axios.post("/api/login/", {
-            username: username,
-            password: password
-        }).then(response => {
-            console.log(response)
-        })
+        try {
+            const login_response = await axios.post("/api/login/", {
+                username: username,
+                password: password
+            });
+            this.setState({error: ""});
+            localStorage.setItem("git_login", username);
+            localStorage.setItem("git_pass", password)
+        } catch(e) {
+            this.setState({error: "Invalid credentials"})
+        }
     }
 }

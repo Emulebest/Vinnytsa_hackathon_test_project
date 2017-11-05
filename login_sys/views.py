@@ -6,7 +6,6 @@ from rest_framework.views import APIView
 class LoginGit(APIView):
     def post(self, request):
         r = requests.get('https://api.github.com/user', auth=(request.data["username"], request.data["password"]))
-        print(r.status_code)
         return Response({
             "user_info": r.json()
         }, status=r.status_code)
