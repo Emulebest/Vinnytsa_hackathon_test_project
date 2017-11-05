@@ -20,7 +20,7 @@ class SearchRepos(APIView):
             else:
                 issues_url = repo.json()["issues_url"].split("{")[0]
                 return Response({
-                    "issues": requests.get(issues_url)
+                    "issues": requests.get(issues_url).json()
                 })
         else:
             return Response({
