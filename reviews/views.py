@@ -21,6 +21,16 @@ class LoginView(APIView):
             })
 
 
-class ReviewView(generics.CreateAPIView):
+class ReviewCreateView(generics.CreateAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
+
+
+class ReviewListView(generics.ListAPIView):
+    serializer_class = ReviewSerializer
+
+    def get_queryset(self):
+        username_filter = self.request.GET["username", None]
+        if not username_filter:
+            return Review.objects.all()
+        return Review.objects.filter(username=username_filter)
