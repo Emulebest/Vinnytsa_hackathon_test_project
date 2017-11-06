@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./sass/App.scss";
-import Head from "./containers/Head";
+import NavBar from "./containers/NavBar";
 import Body from "./containers/Body";
 import {BrowserRouter} from "react-router-dom";
 
@@ -10,7 +10,7 @@ class App extends Component {
         return (
                 <BrowserRouter>
                     <div>
-                        <Head/>
+                        <NavBar/>
                         <Body/>
                     </div>
                 </BrowserRouter>
