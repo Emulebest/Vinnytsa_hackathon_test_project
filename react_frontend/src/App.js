@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
-import './sass/App.scss';
-import {GetRepo} from "./containers/GetRepo";
-import Organisation from "./containers/IssueTypeContainer";
+import React, {Component} from "react";
+import "./sass/App.scss";
+import Head from "./containers/Head";
+import Body from "./containers/Body";
+import {BrowserRouter} from "react-router-dom";
+
 
 class App extends Component {
     render() {
         return (
-            /*<div className="App">
-                <GetRepo/>
-            </div> */
-            <div className="App">
-                <Organisation/>
-            </div>
+                <BrowserRouter>
+                    <div>
+                        <Head/>
+                        <Body/>
+                    </div>
+                </BrowserRouter>
         );
     }
 }

@@ -1,20 +1,20 @@
 import React from "react";
-import "../sass/IssueTypeContainer.css";
+//import "../sass/IssueTypeContainer.css";
 /*
-export default class IssueTypeContainer extends React.Component{
-    render(){
-        return (
-            <div id="container">
-            <ul>
-                <li>Resolution<span id="res-span">15</span></li>
-                <li>Component<span id="comp-span">20</span></li>
-                <li>Bug<span id="bug-span">5</span></li>
-                <li>Browser<span id="brow-span">10</span></li>
-            </ul>
-            </div>
-        )
-    }
-}*/
+ export default class IssueTypeContainer extends React.Component{
+ render(){
+ return (
+ <div id="container">
+ <ul>
+ <li>Resolution<span id="res-span">15</span></li>
+ <li>Component<span id="comp-span">20</span></li>
+ <li>Bug<span id="bug-span">5</span></li>
+ <li>Browser<span id="brow-span">10</span></li>
+ </ul>
+ </div>
+ )
+ }
+ }*/
 
 var people = [{
     id: 1,
@@ -66,9 +66,9 @@ export default class Organisation extends React.Component {
     render() {
         // loop through the persons array and create a new component for each, passing the current person (id and name) and it's children (person.people) as props
 
-        let nodes = people.map(function(person) {
+        let nodes = people.map(function (person) {
             return (
-                <Node node={person} children={person.people} />
+                <Node node={person} children={person.people}/>
             );
         });
 
@@ -82,15 +82,17 @@ export default class Organisation extends React.Component {
     }
 }
 class Node extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = {show : false};
+        this.state = {show: false};
         this.handleClick = this.handleClick.bind(this);
 
     }
-    handleClick(e){
-        console.log("clicked");
+
+    handleClick(param, e) {
+        console.log(param);
         this.setState({show : true}); // если тру - тогда все открывается классно, но потом не закрывается
+
     }
 
 
@@ -99,27 +101,30 @@ class Node extends React.Component {
         let childnodes = null;
 
         // the Node component calls itself if there are children
-        if(this.props.children) {
-            childnodes = this.props.children.map(function(childnode) {
+        if (this.props.children) {
+            childnodes = this.props.children.map(function (childnode) {
                 return (
-                    <Node  node={childnode} children={childnode.people} />
+                    <Node node={childnode} children={childnode.people}/>
                 );
             });
         }
 
         // return our list element
         // display children if there are any
+
         return (
             <li onClick={this.handleClick} key={this.props.node.id}>
-                {childnodes ? <p>+</p> : null}
+                {childnodes ? <span>+ </span> : null}
                 {this.props.node.name}
                 { childnodes && this.state.show ?
                     <ul>{childnodes}</ul>
                     : null }
             </li>
         );
+
     }
 }
+
 
 
 
