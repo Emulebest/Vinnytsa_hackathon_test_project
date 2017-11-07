@@ -1,11 +1,14 @@
 import React, {Component} from "react"
 import axios from "axios"
+import {ShowReviewsRepo, ShowReviewsUsername} from "./ShowReviews"
 
 export class AddReview extends Component {
     constructor(props) {
         super(props);
-        this.state = {user_pic: "", error: "", loading: true, send_status: ""};
-        this.sendReview = this.sendReview.bind(this)
+        this.state = {user_pic: "", error: "", loading: true, send_status: "", my_reviews: false, all_reviews: false};
+        this.sendReview = this.sendReview.bind(this);
+        this.showAllReviews =this.showAllReviews.bind(this);
+        this.showMyReviews =this.showMyReviews.bind(this);
     }
 
     render() {
@@ -19,17 +22,21 @@ export class AddReview extends Component {
         if (this.state.error === "") {
             return (
                 <div>
-                    <p>Hi logged</p>
+                    <p>Hi {localStorage.getItem("username")}</p>
                     <input type="text" id="review_text" placeholder="Your review text"/>
                     <input type="number" id="rating"/>
                     <input type="button" id="send_review_button" value="Send review" onClick={this.sendReview}/>
                     <p>{this.state.send_status}</p>
+                    <button onClick={this.showMyReviews}>Get all your reviews</button>
+                    <button onClick={this.showAllReviews}>Get all reviews for this repository</button>
+                    {this.state.my_reviews ? <ShowReviewsUsername/> : null}
+                    {this.state.all_reviews ? <ShowReviewsRepo repo={this.props.repo_name} owner={this.props.owner_name}/> : null}
                 </div>
             )
         } else {
             return (
                 <div>
-                    <p>Hi not logged</p>
+                    <p>Please login!</p>
                 </div>
             )
         }
@@ -83,5 +90,33 @@ export class AddReview extends Component {
 
     componentDidMount() {
         this.getUser();
+    }
+
+    showMyReviews() {
+        if (this.state.my_reviews) {
+            this.setState({
+                my_reviews: false,
+                all_reviews: false
+            })
+        } else {
+            this.setState({
+                my_reviews: true,
+                all_reviews: false
+            })
+        }
+    }
+
+    showAllReviews() {
+        if (this.state.all_reviews) {
+            this.setState({
+                all_reviews: false,
+                my_reviews: false
+            })
+        } else {
+            this.setState({
+                all_reviews: true,
+                my_reviews:false
+            })
+        }
     }
 }

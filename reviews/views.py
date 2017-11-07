@@ -30,7 +30,16 @@ class ReviewListView(generics.ListAPIView):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        username_filter = self.request.GET["username", None]
+        username_filter = self.request.GET.get("username", None)
         if not username_filter:
             return Review.objects.all()
         return Review.objects.filter(username=username_filter)
+
+
+class ReviewListAllRepoReview(ReviewListView):
+    def get_queryset(self):
+        repo_filter = self.request.GET.get("repo", None)
+        owner_filter = self.request.GET.get("owner", None)
+        if not repo_filter and owner_filter:
+            return Review.objects.all()
+        return Review.objects.filter(repo_name=repo_filter, owner_name=owner_filter)
