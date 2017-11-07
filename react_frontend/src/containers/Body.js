@@ -1,7 +1,7 @@
 import React from "react";
 import {Switch, Route} from 'react-router-dom'
 import {GetRepo} from "./GetRepo";
-import IssueTypeContainer from "./IssueTypeContainer";
+import IssueTypeContainer from "./IssueContainer";
 import {Login} from "./Login";
 import {AddReview} from "./AddReview";
 import {Home} from "./Home";

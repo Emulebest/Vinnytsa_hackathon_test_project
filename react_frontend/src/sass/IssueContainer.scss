@@ -1,0 +1,22 @@
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+#container{
+  width: 100vw;
+}
+
+.org {
+  list-style-type: none;
+  li {
+    background-color: white;
+    border-left: 3px grey solid;
+    padding: 20px 40px;
+    span{
+      font-size: 30px;
+    }
+    ul{
+      margin-top: 20px;
+    }
+  }
+}

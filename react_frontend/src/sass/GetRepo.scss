@@ -1,0 +1,31 @@
+$grey: #c2c2c2;
+
+
+#input-container{
+  margin-top: 20px;
+  input, input:focus{
+    font-size: 18px;
+    outline: none;
+  }
+  input[type=text]{
+    line-height: 25px;
+    width: 250px;
+    padding: 10px 5px;
+    border-radius: 8px;
+    border: 1px solid $grey;
+    margin-bottom: 10px;
+  }
+  input[type=button]{
+    padding: 10px 20px;
+    outline:none;
+    border-radius: 20px;
+    border: 1px;
+    background-color: $grey;
+  }
+}
+ul{
+  list-style-type: none;
+}
+#container-form-search{
+  margin: 20px 0 0 20px;
+}
