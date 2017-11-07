@@ -1,0 +1,23 @@
+.review{
+  display: flex;
+  border: solid 1px gainsboro;
+  border-radius: 10px;
+  margin: 10px 1px 10px;
+  padding: 5px 5px 5px 5px;
+  img{
+    border:solid 2px black;
+    border-radius: 20px;
+    max-height: 100px;
+    max-width: 100px;
+  }
+  %inner_block{
+    display: flex;
+    flex-direction: column;
+  }
+  .user{
+    @extend %inner_block
+  }
+  .text{
+    @extend %inner_block
+  }
+}

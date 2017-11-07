@@ -63,7 +63,7 @@ class SearchRepos(APIView):
                                 label_issue_child = l
             labels_issues.add_child(no_label)
             return Response({
-                "labels_with_issues":labels_issues.children
+                "issues":labels_issues.children
             })
         else:
             return Response({
@@ -92,6 +92,6 @@ class SearchRepos(APIView):
     def _get_issues_by_label(self,labels,issues):
         i = []
         for issue in issues:
-            if all([label['name'] in labels for label in issue['labels']]):
+            if sorted([label['name'] for label in issue['labels']]) == sorted(labels):
                 i.append(issue)
         return i
