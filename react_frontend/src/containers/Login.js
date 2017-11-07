@@ -1,6 +1,8 @@
 import React, {Component} from "react"
 import axios from "axios"
 import {store} from "../index"
+import "../sass/Login.css"
+import "../sass/Review.css"
 
 export class Login extends Component {
     constructor(props) {
@@ -11,20 +13,28 @@ export class Login extends Component {
     }
 
     render() {
-        if (this.state.logged !== true){
+        if (this.state.logged !== true) {
             return (
-                <div>
-                    <input type="text" id="username" placeholder="Username"/>
-                    <input type="text" id="password" placeholder="Password"/>
-                    <input type="button" id="login" value="Login" onClick={this.handleClickLogin}/>
-                    <p>{this.state.error}</p>
+                <div className="login-container">
+                    <div className="inner-login">
+                        <div>
+                            <input type="text" id="username" placeholder="Username"/>
+                        </div>
+                        <div>
+                            <input type="password" id="password" placeholder="Password"/>
+                        </div>
+                        <div>
+                            <button className="btn btn-success" id="login" onClick={this.handleClickLogin}>Login</button>
+                        </div>
+                        <p>{this.state.error}</p>
+                    </div>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <h3>Hello {this.state.username}</h3>
-                    <input type="button" id="logout" value="Logout" onClick={this.handleClickLogout}/>
+                <div className="center-login">
+                    <h2>Welcome {this.state.username}</h2>
+                    <button id="logout" className="btn btn-warning" onClick={this.handleClickLogout}>Wanna Logout?</button>
                 </div>
             )
         }
