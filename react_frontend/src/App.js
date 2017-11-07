@@ -1,14 +1,34 @@
-import React, {Component} from 'react';
-import './sass/App.scss';
-import {GetRepo} from "./containers/GetRepo";
+import React, {Component} from "react";
+import "./sass/App.scss";
+import NavBar from "./containers/NavBar";
+import Body from "./containers/Body";
+import {BrowserRouter} from "react-router-dom";
+import {store} from "./index"
+
 
 class App extends Component {
     render() {
         return (
-            <div className="App">
-                <GetRepo/>
-            </div>
+                <BrowserRouter>
+                    <div>
+                        <NavBar/>
+                        <Body/>
+                    </div>
+                </BrowserRouter>
         );
+    }
+
+    componentWillMount() {
+        this.initLoad();
+    }
+
+    initLoad() {
+        if (localStorage.getItem("username")) {
+            store.dispatch({
+                type: "INITIAL_LOAD",
+                logged: true
+            })
+        }
     }
 }
 

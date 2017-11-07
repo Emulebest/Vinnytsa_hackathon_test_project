@@ -1,0 +1,47 @@
+$res_color : #aeb4b4;
+$com_color : #538eff;
+$bug_color : #ff5338;
+$brows_color : #29c0ff;
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+#container{
+  width: 25vw;
+  min-width: 200px;
+}
+
+ul {
+  list-style-type: none;
+  li {
+    background-color: white;
+    border-left: 2px red solid;
+    padding: 20px 40px;
+    position: relative;
+    span{
+      padding: 5px 13px;
+      border-radius: 15px;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+#res-span{
+  background-color: $res_color;
+}
+#comp-span{
+  background-color: $com_color;
+}
+#bug-span{
+  background-color: $bug_color;
+}
+#brow-span{
+  background-color: $brows_color;
+}
