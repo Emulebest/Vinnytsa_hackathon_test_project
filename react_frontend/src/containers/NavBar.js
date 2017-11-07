@@ -1,11 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import "../sass/NavBar.css";
+import {store} from "../index"
 
 export default class Head extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {logged: false}
+        this.state = {logged: false};
+        this.logout = this.logout.bind(this)
     }
 
     render() {
@@ -14,28 +16,20 @@ export default class Head extends React.Component {
                 <ul className="navbar">
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/search'>Find</Link></li>
-                    {!this.state.logged ? <li><Link to='/login'>Login</Link></li> : null}
+                    {!store.getState() ? <li><Link to='/login'>Login</Link></li> : <li onClick={this.logout}>Logout</li>}
                     <li><Link to='/review'>Add Review</Link></li>
                 </ul>
             </div>
         )
     }
 
-    componentDidMount() {
-        if (typeof window !== 'undefined') {
-            console.log("I am on");
-            window.addEventListener('storage', () => {
-                console.log("It works");
-                if (localStorage.getItem("username")) {
-                    this.setState({
-                        logged: true,
-                    })
-                } else {
-                    this.setState({
-                        logged: false
-                    })
-                }
-            })
-        }
+    logout() {
+        localStorage.clear();
+        this.setState({
+            logged: false
+        });
+        store.dispatch({
+            type: "GOT_UNLOGGED"
+        })
     }
 }

@@ -1,5 +1,6 @@
 import React, {Component} from "react"
 import axios from "axios"
+import {store} from "../index"
 
 export class Login extends Component {
     constructor(props) {
@@ -44,7 +45,10 @@ export class Login extends Component {
                 username: username
             });
             localStorage.setItem("username", username);
-            localStorage.setItem("password", password)
+            localStorage.setItem("password", password);
+            store.dispatch({
+                type: "GOT_LOGGED"
+            })
         } catch (e) {
             this.setState({
                 error: "Wrong credentials",
@@ -57,6 +61,9 @@ export class Login extends Component {
         localStorage.clear();
         this.setState({
             logged: false
+        });
+        store.dispatch({
+            type: "GOT_UNLOGGED"
         })
     }
 
