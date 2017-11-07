@@ -27,9 +27,12 @@ class Node extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(param, e) {
-        console.log(param);
-        this.setState({show: true});
+    handleClick(e) {
+        console.log(e.target);
+        console.log(e.target===this);
+        e.stopPropagation();
+
+        this.setState({show: !this.state.show});
     }
 
 
