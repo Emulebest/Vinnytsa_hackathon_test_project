@@ -1,6 +1,28 @@
 import React, {Component} from 'react';
 import axios from "axios"
-import IssueTypeContainer from "./IssueTypeContainer";
+import IssueContainer from "./IssueContainer";
+import "../sass/GetRepo.css";
+/*
+var data = [{
+    id: 1,
+    name: "Bug",
+    issues: [{name : "bug", labels : "1", text : "bug text"}, {name : "bug", labels : "2", text : "bug text"}],
+    children: [
+        {
+            id: 3,
+            name: "Component",
+            issues: [{name : "bug component", labels : "1", text : "bug component text"}, {name : "bug component", labels : "2", text : "b text"}],
+            children: [
+                {
+                    id: 4,
+                    name: "Lalala",
+                    children : [],
+                    issues: [{name : "bug ", labels : "1", text : "bug component text"}, {name : "bug component", labels : "2", text : "b text"}]
+                }
+            ]
+        }
+    ]
+}];*/
 
 export class GetRepo extends Component {
     constructor(props) {
@@ -12,12 +34,16 @@ export class GetRepo extends Component {
     render() {
         return (
             <div>
-                <input type="text" id="repo" placeholder="repo_name" value="react"/>
-                <input type="text" id="owner" placeholder="owner_name" value="facebook"/>
-                <input type="button" id="search_button" onClick={this.searchRepo}/>
+            <div id="input-container">
+                <input type="text" id="repo" placeholder="Repository name" />
+                <br/>
+                <input type="text" id="owner" placeholder="Owner name" />
+                <br/>
+                <input type="button" id="search_button" onClick={this.searchRepo} value="Search repo"/>
                 {this.state.error !== "" ? <p>{this.state.error}</p> : null}
+            </div>
                 <div>
-                    <IssueTypeContainer issues={this.state.issues}/>
+                    <IssueContainer issues={this.state.issues}/>
                 </div>
             </div>
         )
