@@ -17,6 +17,10 @@ class SearchRepos(APIView):
                 return Response({
                     "error": "Not found"
                 }, status=status.HTTP_404_NOT_FOUND)
+            elif error_msg:
+                return Response({
+                    "error": "limit exceeded"
+                })
             else:
                 issues_url = repo.json()["issues_url"].split("{")[0]
                 return Response({
