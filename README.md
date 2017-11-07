@@ -1,7 +1,7 @@
 # Git issues resolver
 
 To run project make next steps:
-* download
+* download Python 3.6+, NodeJS 6.3.1 or higher, and project itself
 * cd to git_resolver directory
 * pip install -r requirements.txt
 * cd react_frontend
