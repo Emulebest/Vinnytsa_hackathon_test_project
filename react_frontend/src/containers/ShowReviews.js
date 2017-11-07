@@ -60,7 +60,7 @@ export class ShowReviewsRepo extends Component {
 
     async getReviewsRepo() {
         const {repo, owner} = this.props;
-        const reviews = await axios.get("/api/user-reviews/?repo=" + repo + "&owner=" + owner);
+        const reviews = await axios.get("/api/all-reviews/?repo=" + repo + "&owner=" + owner);
         this.setState({
             reviews: reviews.data
         })

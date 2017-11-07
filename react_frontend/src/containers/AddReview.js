@@ -23,6 +23,8 @@ export class AddReview extends Component {
             return (
                 <div>
                     <p>Hi {localStorage.getItem("username")}</p>
+                    <input type="text" id="repo_name" placeholder="Type your repo"/>
+                    <input type="text" id="owner_name" placeholder="Type owner name"/>
                     <input type="text" id="review_text" placeholder="Your review text"/>
                     <input type="number" id="rating"/>
                     <input type="button" id="send_review_button" value="Send review" onClick={this.sendReview}/>
@@ -30,7 +32,7 @@ export class AddReview extends Component {
                     <button onClick={this.showMyReviews}>Get all your reviews</button>
                     <button onClick={this.showAllReviews}>Get all reviews for this repository</button>
                     {this.state.my_reviews ? <ShowReviewsUsername/> : null}
-                    {this.state.all_reviews ? <ShowReviewsRepo repo={this.props.repo_name} owner={this.props.owner_name}/> : null}
+                    {this.state.all_reviews ? <ShowReviewsRepo repo={document.getElementById("repo_name").value} owner={document.getElementById("owner_name").value}/> : null}
                 </div>
             )
         } else {
@@ -66,14 +68,16 @@ export class AddReview extends Component {
     async sendReview() {
         const review_text = document.getElementById("review_text").value;
         const rating = document.getElementById("rating").value;
+        const repo_name = document.getElementById("repo_name").value;
+        const owner_name = document.getElementById("owner_name").value;
         console.log(this.state.user_pic);
         try {
             const resp = await axios.post("/api/create-review/", {
                 username: localStorage.getItem("username"),
                 //repo_name: this.props.repo_name,
                 //owner_name: this.props.owner_name
-                repo_name: "Hack-a-thon_Test",
-                owner_name: "Emulebest",
+                repo_name: repo_name,
+                owner_name: owner_name,
                 review: review_text,
                 rating: rating,
                 user_pic: this.state.user_pic
