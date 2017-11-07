@@ -16,7 +16,7 @@ export class ShowReviewsUsername extends Component {
                         <div className='user'>
                             <p><img src={item.user_pic}/> <br></br> Username: {item.username}</p>
                         </div>
-                        <div className='text'>
+                        <div  className='text'>
                             <p>Text review: {item.review}</p>
                             <p>Rating: {item.rating}</p>
                         </div>
