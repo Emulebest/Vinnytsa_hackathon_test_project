@@ -6,42 +6,24 @@ $brows_color : #29c0ff;
 
 *{
   font-family: 'Roboto', sans-serif;
+  overflow-x: hidden;
 }
 
 #container{
-  width: 25vw;
-  min-width: 200px;
+  width: 100vw;
 }
 
-ul {
+.org {
   list-style-type: none;
   li {
     background-color: white;
-    border-left: 2px red solid;
+    border-left: 3px grey solid;
     padding: 20px 40px;
-    position: relative;
     span{
-      padding: 5px 13px;
-      border-radius: 15px;
-      text-align: center;
-      color: white;
-      font-weight: 600;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
+      font-size: 30px;
+    }
+    ul{
+      margin-top: 20px;
     }
   }
-}
-#res-span{
-  background-color: $res_color;
-}
-#comp-span{
-  background-color: $com_color;
-}
-#bug-span{
-  background-color: $bug_color;
-}
-#brow-span{
-  background-color: $brows_color;
 }

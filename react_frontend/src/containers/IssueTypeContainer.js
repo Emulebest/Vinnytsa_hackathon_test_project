@@ -1,20 +1,5 @@
 import React from "react";
-//import "../sass/IssueTypeContainer.css";
-/*
- export default class IssueTypeContainer extends React.Component{
- render(){
- return (
- <div id="container">
- <ul>
- <li>Resolution<span id="res-span">15</span></li>
- <li>Component<span id="comp-span">20</span></li>
- <li>Bug<span id="bug-span">5</span></li>
- <li>Browser<span id="brow-span">10</span></li>
- </ul>
- </div>
- )
- }
- }*/
+import "../sass/IssueTypeContainer.css";
 
 var people = [{
     id: 1,
@@ -64,7 +49,6 @@ var people = [{
 export default class Organisation extends React.Component {
 
     render() {
-        // loop through the persons array and create a new component for each, passing the current person (id and name) and it's children (person.people) as props
 
         let nodes = people.map(function (person) {
             return (
@@ -73,7 +57,7 @@ export default class Organisation extends React.Component {
         });
 
         return (
-            <div>
+            <div id="container">
                 <ul className="org">
                     {nodes}
                 </ul>
@@ -99,8 +83,6 @@ class Node extends React.Component {
     render() {
 
         let childnodes = null;
-
-        // the Node component calls itself if there are children
         if (this.props.children) {
             childnodes = this.props.children.map(function (childnode) {
                 return (
@@ -109,15 +91,12 @@ class Node extends React.Component {
             });
         }
 
-        // return our list element
-        // display children if there are any
-
         return (
             <li onClick={this.handleClick} key={this.props.node.id}>
                 {childnodes ? <span>+ </span> : null}
                 {this.props.node.name}
                 { childnodes && this.state.show ?
-                    <ul>{childnodes}</ul>
+                    <ul className="org">{childnodes}</ul>
                     : null }
             </li>
         );

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios"
-import {AddReview} from "./AddReview";
+import IssueTypeContainer from "./IssueTypeContainer";
 
 export class GetRepo extends Component {
     constructor(props) {
@@ -17,11 +17,7 @@ export class GetRepo extends Component {
                 <input type="button" id="search_button" onClick={this.searchRepo}/>
                 {this.state.error !== "" ? <p>{this.state.error}</p> : null}
                 <div>
-                    {this.state.issues.map((item, index) => (
-                        <div key={index}>
-                            <p key={index+'_'+0}>Title: {item.title}</p>
-                        </div>
-                    ))}
+                    <IssueTypeContainer issues={this.state.issues}/>
                 </div>
             </div>
         )
