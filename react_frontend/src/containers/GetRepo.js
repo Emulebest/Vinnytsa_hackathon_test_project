@@ -17,10 +17,8 @@ export class GetRepo extends Component {
                 {this.state.error !== "" ? <p>{this.state.error}</p> : null}
                 <div>
                     {this.state.issues.map((item, index) => (
-                        <div> key={index}>
-                            <p> key={index+'_'+0}>Title: {item.title}</p>
-                            <p> key={index+'_'+1}>labels: {item.labels.map((item,key)=>(<div key={key}>{item}</div>))}</p>
-                            <p> key={index+'_'+2}>Body: {item.body}</p>
+                        <div key={index}>
+                            <p key={index+'_'+0}>Title: {item.title}</p>
                         </div>
                     ))}
                 </div>
@@ -37,6 +35,8 @@ export class GetRepo extends Component {
             });
             return
         }
+        console.log(typeof issues.data.issues);
+        console.log(issues.data.issues);
         this.setState({issues: issues.data.issues});
     }
 }
