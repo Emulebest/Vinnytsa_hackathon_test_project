@@ -39,18 +39,21 @@ export class AddReview extends Component {
                         </div>
                         <div className="form-group">
                             <button className="btn btn-default" id="send_review_button"
-                                    onClick={this.sendReview}>Send review</button>
+                                    onClick={this.sendReview}>Send review
+                            </button>
                         </div>
                     </form>
                     <br/>
                     <div className="form-group">
                         <label htmlFor="review_text">Review</label>
                         <textarea className="form-control" type="text" id="review_text"
-                               placeholder="Your review text"/>
+                                  placeholder="Your review text"/>
                     </div>
                     <p>{this.state.send_status}</p>
                     <button className="btn btn-default" onClick={this.showMyReviews}>Get all your reviews</button>
-                    <button className="btn btn-default" onClick={this.showAllReviews}>Get all reviews for this repository</button>
+                    <button className="btn btn-default" onClick={this.showAllReviews}>Get all reviews for this
+                        repository
+                    </button>
                     {this.state.my_reviews ? <ShowReviewsUsername/> : null}
                     {this.state.all_reviews ? <ShowReviewsRepo repo={document.getElementById("repo_name").value}
                                                                owner={document.getElementById("owner_name").value}/> : null}
@@ -93,7 +96,7 @@ export class AddReview extends Component {
         const owner_name = document.getElementById("owner_name").value;
         console.log(this.state.user_pic);
         try {
-            const resp = await axios.post("/api/create-review/", {
+            await axios.post("/api/create-review/", {
                 username: localStorage.getItem("username"),
                 //repo_name: this.props.repo_name,
                 //owner_name: this.props.owner_name

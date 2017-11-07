@@ -28,8 +28,6 @@ class Node extends React.Component {
     }
 
     handleClick(e) {
-        console.log(e.target);
-        console.log(e.target===this);
         e.stopPropagation();
 
         this.setState({show: !this.state.show});
@@ -48,7 +46,7 @@ class Node extends React.Component {
 
         return (
             <li onClick={this.handleClick} key={this.props.node.id}>
-                {childnodes.length != 0 || this.props.issues ? <span>+ </span> : null}
+                {childnodes.length !== 0 || this.props.issues ? <span>+ </span> : null}
                 {this.props.node.name }
                 { childnodes && this.state.show ?
                     <div>

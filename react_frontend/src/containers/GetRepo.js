@@ -36,17 +36,15 @@ export class GetRepo extends Component {
 
     async searchRepo() {
         const search_string = "/api/search/?q=" + document.getElementById("repo").value + "&owner=" + document.getElementById("owner").value;
-        this.setState({fetching:true});
-        const issues = await axios.get(search_string);
-        if (issues.data.error !== undefined) {
+        this.setState({fetching: true, error: ""});
+        try {
+            const issues = await axios.get(search_string);
+            this.setState({issues: issues.data.issues, fetching: false});
+        } catch(e) {
             this.setState({
-                "error": "Limit exceeded",
+                error: "Repository not found",
                 fetching: false
-            });
-            return
+            })
         }
-        console.log(typeof issues.data.issues);
-        console.log(issues.data.issues);
-        this.setState({issues: issues.data.issues, fetching: false});
     }
 }

@@ -87,7 +87,7 @@ class SearchRepos(APIView):
                 except:
                     return items
         else:
-            raise items
+            raise Http404
 
     def _get_issues_by_label(self,labels,issues):
         i = []
