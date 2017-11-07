@@ -18,7 +18,6 @@ export default class Body extends React.Component {
                     <Route path="/review" component={AddReview}/>
                 </Switch>
             </div>
-
         )
     }
 }
