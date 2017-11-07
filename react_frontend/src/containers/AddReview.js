@@ -1,44 +1,65 @@
 import React, {Component} from "react"
 import axios from "axios"
 import {ShowReviewsRepo, ShowReviewsUsername} from "./ShowReviews"
+import "../sass/Review.css"
+import ReactLoading from 'react-loading';
 
 export class AddReview extends Component {
     constructor(props) {
         super(props);
         this.state = {user_pic: "", error: "", loading: true, send_status: "", my_reviews: false, all_reviews: false};
         this.sendReview = this.sendReview.bind(this);
-        this.showAllReviews =this.showAllReviews.bind(this);
-        this.showMyReviews =this.showMyReviews.bind(this);
+        this.showAllReviews = this.showAllReviews.bind(this);
+        this.showMyReviews = this.showMyReviews.bind(this);
     }
 
     render() {
         if (this.state.loading === true) {
             return (
-                <div>
-                    Loading
-                </div>
+                <article>
+                    <ReactLoading type="spin" color="#444"/>
+                </article>
             )
         }
         if (this.state.error === "") {
             return (
-                <div>
-                    <p>Hi {localStorage.getItem("username")}</p>
-                    <input type="text" id="repo_name" placeholder="Type your repo"/>
-                    <input type="text" id="owner_name" placeholder="Type owner name"/>
-                    <input type="text" id="review_text" placeholder="Your review text"/>
-                    <input type="number" id="rating"/>
-                    <input type="button" id="send_review_button" value="Send review" onClick={this.sendReview}/>
+                <div className="review-container">
+                    <form className="form-inline">
+                        <div className="form-group">
+                            <label htmlFor="repo_name">Repository</label>
+                            <input className="form-control" type="text" id="repo_name" placeholder="react"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="owner_name">Owner of the repo</label>
+                            <input className="form-control" type="text" id="owner_name" placeholder="facebook"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="rating">Rating</label>
+                            <input className="form-control" type="number" id="rating" min="0" placeholder="3"/>
+                        </div>
+                        <div className="form-group">
+                            <button className="btn btn-default" id="send_review_button"
+                                    onClick={this.sendReview}>Send review</button>
+                        </div>
+                    </form>
+                    <br/>
+                    <div className="form-group">
+                        <label htmlFor="review_text">Review</label>
+                        <textarea className="form-control" type="text" id="review_text"
+                               placeholder="Your review text"/>
+                    </div>
                     <p>{this.state.send_status}</p>
-                    <button onClick={this.showMyReviews}>Get all your reviews</button>
-                    <button onClick={this.showAllReviews}>Get all reviews for this repository</button>
+                    <button className="btn btn-default" onClick={this.showMyReviews}>Get all your reviews</button>
+                    <button className="btn btn-default" onClick={this.showAllReviews}>Get all reviews for this repository</button>
                     {this.state.my_reviews ? <ShowReviewsUsername/> : null}
-                    {this.state.all_reviews ? <ShowReviewsRepo repo={document.getElementById("repo_name").value} owner={document.getElementById("owner_name").value}/> : null}
+                    {this.state.all_reviews ? <ShowReviewsRepo repo={document.getElementById("repo_name").value}
+                                                               owner={document.getElementById("owner_name").value}/> : null}
                 </div>
             )
         } else {
             return (
-                <div>
-                    <p>Please login!</p>
+                <div className="center-login">
+                    <h1>Please login!</h1>
                 </div>
             )
         }
@@ -119,7 +140,7 @@ export class AddReview extends Component {
         } else {
             this.setState({
                 all_reviews: true,
-                my_reviews:false
+                my_reviews: false
             })
         }
     }
