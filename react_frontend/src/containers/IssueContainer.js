@@ -51,8 +51,15 @@ class Node extends React.Component {
                     <div>
                         <ul className="org">{childnodes}</ul>
                         {this.props.issues ? <ul>{this.props.issues.map(function (item) {
+                            var labels= '';
+                            for (let i = 0; i < item.labels.length; i++){
+                                labels += item.labels[i].name + ', '
+                            }
                             return (
-                                <li>{item.name + " " + item.labels + " " + item.text}</li>
+                                <li><p>
+                                    {"title: " + item.title}<br></br>
+                                    {" labels: " + labels} <br></br>
+                                    {" body: " + item.body}</p></li>
                             )
                         })}</ul> : null}
                     </div>
