@@ -2,27 +2,7 @@ import React, {Component} from 'react';
 import axios from "axios"
 import IssueContainer from "./IssueContainer";
 import "../sass/GetRepo.css";
-/*
-var data = [{
-    id: 1,
-    name: "Bug",
-    issues: [{name : "bug", labels : "1", text : "bug text"}, {name : "bug", labels : "2", text : "bug text"}],
-    children: [
-        {
-            id: 3,
-            name: "Component",
-            issues: [{name : "bug component", labels : "1", text : "bug component text"}, {name : "bug component", labels : "2", text : "b text"}],
-            children: [
-                {
-                    id: 4,
-                    name: "Lalala",
-                    children : [],
-                    issues: [{name : "bug ", labels : "1", text : "bug component text"}, {name : "bug component", labels : "2", text : "b text"}]
-                }
-            ]
-        }
-    ]
-}];*/
+
 
 export class GetRepo extends Component {
     constructor(props) {
@@ -33,7 +13,8 @@ export class GetRepo extends Component {
 
     render() {
         return (
-            <div>
+            <div id="container-form-search">
+                <h3>Please fill in the form to search repository issues</h3>
             <div id="input-container">
                 <input type="text" id="repo" placeholder="Repository name" />
                 <br/>
